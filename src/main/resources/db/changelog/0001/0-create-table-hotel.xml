@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+
+    <changeSet id="000" author="">
+        <createTable tableName="hotel" remarks="Отель">
+            <column name="id" type="varchar2(40)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+            <column name="external_id" type="varchar2" remarks="ID отеля во внешней системе (propertyId)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="external_system_type" type="varchar2" remarks="Название системы PMS">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_active_offer" type="boolean" remarks="Признак"/>
+            <column name="title" type="varchar2" remarks="Наименование отеля"/>
+            <column name="create_dt" type="datetime"/>
+        </createTable>
+        <rollback>
+            <dropTable tableName="hotel"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
